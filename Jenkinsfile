@@ -22,11 +22,14 @@ pipeline {
 
         stage('Push to DockerHub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_TOKEN')]) {
                     sh '''
-                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    docker push $IMAGE_NAME
+                    echo "$DOCKER_TOKEN" | docker login -u "bodkekarbalaji95" --password-stdin
+                    docker build -t bodkekarbalaji95/flask-devops-app .
+                    docker push bodkekarbalaji95/flask-devops-app
                     '''
+                }
+
                 }
             }
         }
