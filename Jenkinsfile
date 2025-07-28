@@ -22,7 +22,7 @@ pipeline {
 
         stage('Push to DockerHub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_TOKEN')]) {
+                withCredentials([string(credentialsId: 'dockerhub-cred', variable: 'DOCKER_TOKEN')]) {
                     sh '''
                     echo "$DOCKER_TOKEN" | docker login -u "bodkekarbalaji95" --password-stdin
                     docker build -t bodkekarbalaji95/flask-devops-app .
