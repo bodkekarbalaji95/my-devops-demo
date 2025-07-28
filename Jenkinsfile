@@ -28,7 +28,6 @@ pipeline {
                     docker build -t bodkekarbalaji95/flask-devops-app .
                     docker push bodkekarbalaji95/flask-devops-app
                     '''
-                }
 
                 }
             }
