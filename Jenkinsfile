@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "yourdockerhubusername/flask-devops-app"
+        IMAGE_NAME = "bodkekarbalaji95/flask-devops-app"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+                git 'https://github.com/bodkekarbalaji95/my-devops-demo.git'
             }
         }
 
@@ -33,9 +33,9 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(['your-ec2-ssh-key']) {
+                sshagent(['my_key_ssh']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no ec2-user@EC2_PUBLIC_IP "
+                    ssh -o StrictHostKeyChecking=no ec2-ubuntu@EC2_3.88.210.132 "
                         docker pull $IMAGE_NAME &&
                         docker stop flask-devops || true &&
                         docker rm flask-devops || true &&
